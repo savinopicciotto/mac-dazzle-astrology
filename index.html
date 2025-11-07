@@ -201,119 +201,27 @@
     .receipt-container.show { display: block; }
     
     .receipt {
-      background: #f5f5f0;
-      color: #000;
-      max-width: 400px;
+      max-width: 500px;
       margin: 0 auto;
-      padding: 40px 30px;
-      font-family: 'Courier New', monospace;
-      border-radius: 8px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-    
-    .receipt-header {
       text-align: center;
-      margin-bottom: 24px;
     }
     
-    .mac-logo {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 4px;
-    }
-    
-    .dazzle-logo {
-      font-size: 36px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      margin-bottom: 8px;
-    }
-    
-    .receipt-subtitle {
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #666;
-    }
-    
-    .receipt-divider {
-      border-bottom: 2px solid #000;
-      margin: 16px 0;
-    }
-    
-    .receipt-title {
-      text-align: center;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin: 16px 0;
-    }
-    
-    .receipt-section {
-      margin: 16px 0;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-    
-    .receipt-label { font-weight: 700; }
-    
-    .signs-section {
-      text-align: center;
-      margin: 20px 0;
-    }
-    
-    .signs-title {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-    }
-    
-    .sign-row {
-      font-size: 13px;
-      margin: 6px 0;
-    }
-    
-    .message-section {
-      margin: 20px 0;
-      padding: 12px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 12px;
-      line-height: 1.6;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-    
-    .chart-wheel {
-      text-align: center;
-      margin: 20px 0;
-    }
-    
-    .chart-wheel img {
+    .receipt img {
       max-width: 100%;
       height: auto;
-      border-radius: 50%;
-    }
-    
-    .receipt-footer {
-      text-align: center;
-      font-size: 11px;
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 2px solid #000;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     }
     
     .demo-badge {
       background: linear-gradient(135deg, #5A42ED, #E34049);
       color: #fff;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 16px;
-      font-size: 10px;
+      font-size: 0.85rem;
       font-weight: 700;
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 24px;
       letter-spacing: 1px;
     }
     
@@ -475,10 +383,6 @@
         <h2 style="text-align: center; margin-bottom: 24px;">Your Astrology Receipt</h2>
         
         <div class="receipt" id="receipt"></div>
-
-        <p class="ctas" style="margin-top: 24px; justify-content: center;">
-          <a href="#" onclick="window.print(); return false;" style="background: #1a1a1a; border: 1px solid #333;">🖨️ Print Receipt</a>
-        </p>
       </div>
     </div>
 
@@ -504,7 +408,7 @@
         moon: "Taurus ♉",
         rising: "Aries ♈",
         message: "Balance and harmony are within reach. Seek peace in all your endeavors.",
-        chartImage: "assets/dan_chart-1.png"
+        receiptImage: "assets/dan_chart-1.png"
       },
       maya: {
         name: "Maya Rodriguez",
@@ -518,7 +422,7 @@
         moon: "Cancer ♋",
         rising: "Virgo ♍",
         message: "The stars align in your favor for new beginnings. Embrace change with confidence.",
-        chartImage: "assets/maya_chart-1.png"
+        receiptImage: "assets/maya_chart-1.png"
       },
       savino: {
         name: "Savino Picciotto",
@@ -532,7 +436,7 @@
         moon: "Sagittarius ♐",
         rising: "Aries ♈",
         message: "Your natural charisma draws others to you. Use this influence wisely and with compassion.",
-        chartImage: "assets/savino_chart-1.png"
+        receiptImage: "assets/savino_chart-1.png"
       },
       zoe: {
         name: "Zoë Rose",
@@ -546,7 +450,7 @@
         moon: "Gemini ♊",
         rising: "Gemini ♊",
         message: "Patience and persistence will bring rewards. Trust in the timing of your journey.",
-        chartImage: "assets/zoe_chart-1.png"
+        receiptImage: "assets/zoe_chart-1.png"
       }
     };
 
@@ -564,11 +468,6 @@
 
     function generateReceipt() {
       const name = document.getElementById('guestName').value || "Guest";
-      const birthDate = document.getElementById('birthDate').value;
-      const birthTime = document.getElementById('birthTime').value;
-      const city = document.getElementById('cityName').value;
-      const lat = document.getElementById('latitude').value;
-      const lon = document.getElementById('longitude').value;
 
       let p = profiles.savino;
       Object.values(profiles).forEach(profile => {
@@ -576,39 +475,8 @@
       });
 
       document.getElementById('receipt').innerHTML = `
-        <div class="receipt-header">
-          <div class="mac-logo">MAC</div>
-          <div class="dazzle-logo">DAZZLE</div>
-          <div class="receipt-subtitle">ASTROLOGY SERVICES</div>
-        </div>
-        <div class="receipt-divider"></div>
-        <div class="receipt-title">★ ASTROLOGY RECEIPT ★</div>
-        <div class="receipt-divider"></div>
-        <div class="receipt-section">
-          <div><span class="receipt-label">Name:</span> ${name}</div>
-          <div><span class="receipt-label">Born:</span> ${birthDate} at ${birthTime}</div>
-          <div><span class="receipt-label">Timezone:</span> ${p.timezone}</div>
-          <div><span class="receipt-label">Location:</span> ${city}</div>
-          <div><span class="receipt-label">Coords:</span> ${lat}, ${lon}</div>
-        </div>
-        <div class="receipt-divider"></div>
-        <div class="signs-section">
-          <div class="signs-title">YOUR SIGNS</div>
-          <div class="sign-row">☉ Sun: ${p.sun}</div>
-          <div class="sign-row">☽ Moon: ${p.moon}</div>
-          <div class="sign-row">↑ Rising: ${p.rising}</div>
-        </div>
-        <div class="receipt-divider"></div>
-        <div class="message-section">${p.message}</div>
-        <div class="receipt-divider"></div>
-        <div class="chart-wheel">
-          <img src="${p.chartImage}" alt="Astrology Chart" style="width: 280px;">
-        </div>
-        <div class="receipt-footer">
-          <div>NYC • ${new Date().toLocaleDateString('en-US', {month:'long',day:'numeric',year:'numeric'}).toUpperCase()}</div>
-          <div style="margin-top:8px;font-weight:700;">*** CUSTOMER COPY ***</div>
-          <div class="demo-badge">*** DEMO VERSION ***</div>
-        </div>
+        <img src="${p.receiptImage}" alt="${p.name} Astrology Receipt">
+        <div class="demo-badge">*** DEMO VERSION ***</div>
       `;
       
       document.getElementById('receiptContainer').classList.add('show');
